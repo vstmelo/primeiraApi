@@ -1,15 +1,19 @@
-import express from "express"; // import express package.
+const express = require("express"); // import express package.
 var app = express (); // initialized with express.
-var bodyParser = requiere("body-parser");
+var bodyParser = require("body-parser");
 //importando modulo
-import listaDAO from "./listaDAO";
+const listaDao = require("./src/models/listaDAO");
+const { request } = require("express");
 //iniciando express
 var app = express();
 //configurar metpdp para ler 'body' requests
 app.use(bodyParser.json());
 // criar rotas aqui
-app.get("/teste", function(requeste, response){
+app.post("/teste", function(request, response){
     console.log("Rota /teste acessada com sucesso!");
+    console.log(request.body);
 });
 
-app.listen(8080);
+app.listen(8080, function(){
+    console.log("Server on na porta: " + 8080);
+});
